@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<h1 class="text-center poppins-thin">
+			<i class="fa-solid p-3 fa-file-pen"></i>&nbsp; Update Contact
+		</h1>
+		<div th:if="${session.message}"
+			class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Holy guacamole!</strong> You should check in on some of those
+			fields below.
+			<button type="button" class="btn-close" data-bs-dismiss="alert"
+				aria-label="Close"></button>
+		</div>
+
+		<div class="card mt-3">
+			<div class="card-body">
+			<div class="container-fluid">
+			
+				<div class="row">
+					<div class="col-md-10 offset-md-1">
+						<form enctype='multipart/form-data' th:action="@{/contact/updateContactData}"
+							method="post" th:object="${contact}">
+							<input type="hidden" th:value=${contact.cId} name="cId">
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="basic-addon1"><i
+									class="fa-solid fa-plus"></i></span> <input type="text"
+									class="form-control" placeholder="First Name"
+									th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}"
+									th:value="${contact.firstName}" name="firstName">
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('firstName')}" th:text="${e}"></div>
+							</div>
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="basic-addon1"><i
+									class="fa-solid fa-plus"></i></span> <input type="text"
+									class="form-control" placeholder="Second Name"
+									th:classappend="${#fields.hasErrors('secondName')?'is-invalid':''}"
+									th:value="${contact.secondName}" name="secondName">
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('secondName')}" th:text="${e}"></div>
+							</div>
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="basic-addon1"><i
+									class="fa-solid fa-envelope"></i></span> <input type="email"
+									class="form-control" placeholder="Email"
+									th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+									th:value="${contact.email}" name="email">
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('email')}" th:text="${e}"></div>
+							</div>
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="basic-addon1"><i
+									class="fa-solid fa-phone"></i></span> <input type="tel" size="10"
+									class="form-control" placeholder="Phone"
+									th:value="${contact.phone}"
+									th:classappend="${#fields.hasErrors('phone')?'is-invalid':''}"
+									name="phone">
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('phone')}" th:text="${e}"></div>
+
+							</div>
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="basic-addon1"><i
+									class="fa-solid fa-briefcase"></i></span> <input type="text"
+									class="form-control" placeholder="Work"
+									th:classappend="${#fields.hasErrors('work')?'is-invalid':''}"
+									th:value="${contact.work}" name="work">
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('work')}" th:text="${e}"></div>
+
+							</div>
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="basic-addon1"><i
+									class="fa-solid fa-pen"></i></span>
+								<textarea type="text" class="form-control" placeholder="About"
+									th:classappend="${#fields.hasErrors('description')?'is-invalid':''}"
+									th:text="${contact.description}" row="5" name="description"></textarea>
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('description')}" th:text="${e}"></div>
+							</div>
+							<label>Select Image</label>
+							<div class="input-group mb-3">
+
+								<span class="input-group-text" id="basic-addon1"><i
+									class="fa-solid fa-image"></i></span> <input type="file"
+									class="form-control" name="img">
+							</div>
+
+
+							<button type="submit" class="btn btn-primary">Add
+								Contact</button>
+						</form>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

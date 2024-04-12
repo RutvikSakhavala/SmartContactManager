@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="banner">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="card mt-5">
+					<h1 class="text-center" style="color:#009688">Login Form</h1>
+						<div class="card-body">
+						
+						<div style="width: 70%; margin: auto;" th:if="${session.message}"
+							th:classappend="${'alert-'+session.message.type}"
+							th:text=${session.message.content} class="my-3 alert" role="alert">A
+							simple success alert—check it out!</div>
+						<th:block th:text="${@sessionRemover.removeAttribute('message')}" />
+							<form th:action="@{/login}" method="post">
+							
+								<div th:if="${param.error}" class="alert alert-danger">
+									Invalid Credentials
+								</div>
+								<div th:if="${param.logout}" class="alert alert-success">
+									You have been logout
+								</div>
+								<div class="mb-3">
+									<label for="exampleInputEmail1" class="form-label">Email address</label> 
+									 <input type="email" class="form-control" name="username"
+										id="exampleInputEmail1" aria-describedby="emailHelp">
+									
+								</div>
+								<div class="mb-3">
+									<label for="exampleInputPassword1" class="form-label">Password</label>
+									<input type="password" class="form-control" name="password"
+										id="exampleInputPassword1">
+								</div>
+								
+								<button type="submit" class="btn bg-Primary text-white">Submit</button>
+								<a th:href="@{forgetPasswd}" class="text-color" style="text-decoration:none; float:right;">Forget Password ?</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<h1 class="text-center"><i class="fa-solid fa-address-book"></i>&nbsp;Contacts</h1>
+		<div class="card mt-3">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-10 offset-md-1">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#Id</th>
+									<th scope="col">Name</th>
+									<th scope="col">Email</th>
+									<th scope="col">Phone</th>
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="e : ${contacts}">
+									<td th:text="${e.cId}"></td>
+									<td><img src="" th:src="@{'/images/'+${e.image}}" class="profile-img" alt="image"/><span th:text="${e.firstName + ' ' + e.secondName}"></span></td>
+									<td><a th:href="@{'/user/contact/'+${e.cId}}"><span th:text="${e.email}"></span></a></td>									
+									<td th:text="${e.phone}"></td>
+									<td><a th:href="@{'/contact/deleteContact/'+${e.cId}}" class="btn btn-sm btn-danger">Delete</a>
+									<form th:method="post" th:action="@{'/contact/updateContact/'+${e.cId}}"><button class="btn btn-sm btn-primary" type="submit">Update</button></form></td>
+								</tr>
+
+							</tbody>
+						</table>
+
+						<div th:if="${msg}" th:text="${msg}">
+							
+						</div>
+						<nav th:unless="${msg}" aria-label="Page navigation example">
+							<ul class="pagination">
+								<li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/user/viewContacts/'+${currentPage-1}}">Previous</a></li>								
+								<li th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:text="${i}" class="page-link" th:href="@{'/user/viewContacts/'+${i-1}}">3</a></li>
+								<li th:if="${currentPage+1 != totalPages}" class="page-item"><a class="page-link" th:href="@{'/user/viewContacts/'+${currentPage+1}}">Next</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

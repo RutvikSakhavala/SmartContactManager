@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<div class="card mt-5">
+					<div class="card-body">
+						<div style="width: 50%; margin: auto;" th:if="${session.message}"
+							th:classappend="${'alert-'+session.message.type}"
+							th:text=${session.message.content} class="my-3 alert"
+							role="alert">A simple success alert—check it out!</div>
+						<th:block th:text="${@sessionRemover.removeAttribute('message')}" />
+						<form th:method="post" th:action="@{varifyOtp}">
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" name="otp"
+									placeholder="Enter Otp" aria-label="Username"
+									aria-describedby="basic-addon1">
+							</div>
+							<button class="btn btn-primary">verify otp</button>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

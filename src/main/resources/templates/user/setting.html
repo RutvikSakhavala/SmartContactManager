@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+						<div style="width: 50%; margin: auto;" th:if="${session.message}"
+							th:classappend="${'alert-'+session.message.type}"
+							th:text=${session.message.content} class="my-3 alert" role="alert">A
+							simple success alert—check it out!</div>
+						<th:block th:text="${@sessionRemover.removeAttribute('message')}" />
+						<h1 class="text-center">Change Password</h1>
+						<form th:action="@{/user/changePasswd}" th:method="post">
+						
+							<div class="input-group mb-3">
+								<input name="oldPasswd" type="password" class="form-control" placeholder="Enter Old Password"
+									aria-label="Username" aria-describedby="basic-addon1">
+							</div>
+							
+							<div class="input-group mb-3">
+								<input name="newPasswd" type="password" class="form-control" placeholder="Enter New Password"
+									aria-label="Username" aria-describedby="basic-addon1">
+							</div>
+							
+							<Button class="btn btn-primary" type="submit" >Change</Button>
+							<Button class="btn btn-danger" type="reset">Reset</Button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

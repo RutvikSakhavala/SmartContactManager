@@ -1,0 +1,71 @@
+body{
+	background: #e2e2e2;
+}
+
+.bg-Primary{
+	background: #009688;
+}
+.text-color{
+	color: #009688;
+}
+.poppins-thin {
+  font-family: "Poppins", sans-serif;
+  
+  
+}
+.text-white{
+	color:white;
+}
+
+.banner{
+	background: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("/images/contacts.jpg");
+	width:100%;
+	height:100vh;
+	color:white;
+	background-size: cover;
+}
+
+.width{
+	width:8vw;
+}
+
+.sidebar{
+	margin-top:8vh;
+	padding-top:5vh;
+	width:18%;
+	height:100%;
+	position:fixed;
+	background: white;
+}
+
+.sidebar a{
+	padding:10px 20px;
+	display:block;
+	width:100%;	
+	text-decoration: none;
+	color:gray;
+	
+}
+.sidebar a:hover{
+	color:white;
+	background: gray;
+}
+.content{
+	/* display: flex;
+	
+	justify-content: center; */
+	padding-top:12vh;	
+	margin-left: 20%;
+	margin-right: 2%;
+}
+.profile-img{
+	width:35px;
+	height:35px;
+	object-fit:cover;
+	border-radius:50%;
+}
+.contact-img{
+	width:200px;
+	height:200px;
+	
+}
