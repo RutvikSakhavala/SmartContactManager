@@ -8,7 +8,7 @@
 	<section>
 		<div class="card">
 			<div class="card-body text-center">
-				<img class="contact-img profile-img" th:src="@{'/images/'+${user.imageUrl}}"/>
+				<img class="contact-img profile-img" th:src="@{'/images/'+${user.getImageUrl()}}"/>
 				 <table class="table">
 				 	<thead>
 				 		<tr>

@@ -69,3 +69,16 @@ body{
 	height:200px;
 	
 }
+.search-container{
+	position:relative
+}
+.search-result{
+	position:static;
+	margin-top:8px;
+	width:100%;
+	padding:10px;
+	border:1px solid;
+	border-radius:10px;
+	display:none;
+	background: white;
+}

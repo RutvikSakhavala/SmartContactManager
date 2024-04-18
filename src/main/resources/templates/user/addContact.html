@@ -7,14 +7,14 @@
 </head>
 <body>
 	<section>
-		<h1 class="text-center poppins-thin">
-			<i class="fa-solid p-3 fa-user-plus"></i>&nbsp; Add Contact
-		</h1>
 		<div style="width: 50%; margin: auto;" th:if="${session.message}"
 							th:classappend="${'alert-'+session.message.type}"
 							th:text=${session.message.content} class="my-3 alert" role="alert">A
 							simple success alert—check it out!</div>
 						<th:block th:text="${@sessionRemover.removeAttribute('message')}" />
+		<h1 class="text-center poppins-thin">
+			<i class="fa-solid p-3 fa-user-plus"></i>&nbsp; Add Contact
+		</h1>
 
 		<div class="card mt-3">
 			<div class="card-body">

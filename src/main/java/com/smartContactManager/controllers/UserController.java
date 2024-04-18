@@ -78,6 +78,7 @@ public class UserController {
 			}
 			else
 			{
+				
 				if(file.isEmpty())
 				{
 					contact.setImage("userid.png");
@@ -98,10 +99,10 @@ public class UserController {
 				user.getContacts().add(contact);
 				userRepository.save(user);
 
-			    session.setAttribute("message", "Contact added successfully");
+			    session.setAttribute("message", new Message("Contact Added successfully","success"));
 
 				model.addAttribute("contact", new Contact());
-
+				
 				return "/user/addContact";
 			}
 		}
@@ -145,7 +146,8 @@ public class UserController {
 		model.addAttribute("contact", contact);
 		return "/user/contact";
 	}
-
+	
+	
 	@GetMapping("/profile")
 	public String profile()
 	{
