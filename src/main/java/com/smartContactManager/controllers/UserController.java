@@ -56,7 +56,8 @@ public class UserController {
 	}
 
 	@GetMapping("/index")
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("title","Home");
 		return "/user/index";
 	}
 
@@ -120,7 +121,7 @@ public class UserController {
 	@GetMapping("/viewContacts/{page}")
 	public String viewContacts(@PathVariable("page") int page, Model model,Principal principal)
 	{
-
+		model.addAttribute("title","Contacts");
 		String userName = principal.getName();
 		User user = userRepository.getUserByUserName(userName);
 		Pageable pageable = PageRequest.of(page, 10);
@@ -141,6 +142,7 @@ public class UserController {
 	@RequestMapping("/contact/{cId}")
 	public String contactDetail(@PathVariable("cId") Integer cId,Model model)
 	{
+		model.addAttribute("title","Contact Detail");
 		Optional<Contact> optionalContact = contactRepository.findById(cId);
 		Contact contact = optionalContact.get();
 		model.addAttribute("contact", contact);
@@ -155,8 +157,10 @@ public class UserController {
 	}
 
 	@GetMapping("/setting")
-	public String setting()
+	public String setting(Model model)
 	{
+		model.addAttribute("title","Setting");
+		
 		return "/user/setting";
 	}
 
@@ -181,5 +185,45 @@ public class UserController {
 
 
 		return "redirect:/user/setting";
+	}
+	
+	@GetMapping("/updateProfile")
+	public String updateProfile(Model model)
+	{
+		model.addAttribute("title", "Update Profile");
+		return "/user/updateProfile";
+	}
+	@PostMapping("/updateProfileData")
+	public String updateProfileData(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam("image") MultipartFile file,Model model, Principal principal,HttpSession session)
+	{
+		try {
+			User currentUser = userRepository.getReferenceById(user.getId());
+			
+			if(file.isEmpty())
+			{
+				user.setImageUrl(currentUser.getImageUrl());
+			}
+			else {
+				File deleteFile = new ClassPathResource("static/images").getFile();
+				File files = new File(deleteFile, user.getImageUrl());
+				files.delete();
+
+
+
+				File saveFile = new ClassPathResource("static/images").getFile();
+				Path path = Paths.get(saveFile.getAbsolutePath()+java.io.File.separator+file.getOriginalFilename());
+				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+				user.setImageUrl(file.getOriginalFilename());
+			}
+			
+			
+			userRepository.save(user);
+			session.setAttribute("message", new Message("Profile Update Successfully","success"));			
+			return "/user/setting";
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+			return "/user/updateProfile";
+		}					
 	}
 }

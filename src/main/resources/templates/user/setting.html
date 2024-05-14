@@ -37,6 +37,23 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="row mt-3">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+						<div style="width: 50%; margin: auto;" th:if="${session.message}"
+							th:classappend="${'alert-'+session.message.type}"
+							th:text=${session.message.content} class="my-3 alert" role="alert">A
+							simple success alert—check it out!</div>
+						<th:block th:text="${@sessionRemover.removeAttribute('message')}" />
+						<h3>
+						<a th:href="@{/user/updateProfile}">Update Profile</a>
+						</h3>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 </body>

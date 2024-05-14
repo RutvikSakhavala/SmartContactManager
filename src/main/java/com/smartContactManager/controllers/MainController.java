@@ -110,14 +110,16 @@ public class MainController {
 	}
 //
 	@GetMapping("/login")
-	public String login()
+	public String login(Model model)
 	{
+		model.addAttribute("title","Login");
 		return "login";
 	}
 
 	@GetMapping("/forgetPasswd")
-	public String forgetPasswd()
+	public String forgetPasswd(Model model)
 	{
+		model.addAttribute("title","Forget Password");
 		return "forgetPasswd";
 	}
 	@PostMapping("/sendOtp")

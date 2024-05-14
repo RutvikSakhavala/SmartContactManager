@@ -56,6 +56,7 @@ public class ContactController {
 	@PostMapping("/updateContact/{cId}")
 	public String updateContact(@PathVariable("cId") Integer cId,Model model)
 	{
+		model.addAttribute("title","Update Contact");
 		model.addAttribute("cId", cId);
 		Contact contact = contactRepository.findById(cId).get();
 

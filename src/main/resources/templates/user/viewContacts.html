@@ -36,8 +36,11 @@
 									<td><img src="" th:src="@{'/images/'+${e.image}}" class="profile-img" alt="image"/><span th:text="${e.firstName + ' ' + e.secondName}"></span></td>
 									<td><a th:href="@{'/user/contact/'+${e.cId}}"><span th:text="${e.email}"></span></a></td>									
 									<td th:text="${e.phone}"></td>
-									<td><a th:href="@{'/contact/deleteContact/'+${e.cId}}" class="btn btn-sm btn-danger">Delete</a>
-									<form th:method="post" th:action="@{'/contact/updateContact/'+${e.cId}}"><button class="btn btn-sm btn-primary" type="submit">Update</button></form></td>
+									<td class="d-flex">									
+									<a th:href="@{'/contact/deleteContact/'+${e.cId}}" class="btn btn-sm btn-danger">Delete</a>
+									<form th:method="post" th:action="@{'/contact/updateContact/'+${e.cId}}">
+									<button class="btn btn-sm btn-primary ms-2" type="submit">Update</button>
+									</form></td>
 								</tr>
 
 							</tbody>

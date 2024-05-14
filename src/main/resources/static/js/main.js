@@ -12,7 +12,8 @@ var search=()=>{
     .then(data=>{
 				
 		console.log(data)
-		if(data){
+		
+		if(data.length>0){
 		 $(".search-result").show()
 			
 			let text = `<div class='list-group'>`;
@@ -25,9 +26,11 @@ var search=()=>{
 		text+= `</div>`;	
 		$(".search-result").html(text);
 		}
-		else{
-			
-			$("#no").text("hello");
+		else{						
+			$("#no").html("<div class='list-group mt-2'>"+
+			"<a class='list-group-item list-group-action'>No Contact Found!!</a>"+
+			"</div>"								
+					);			
 		}			
 		});
 	}
