@@ -129,7 +129,7 @@ public class MainController {
 
 		if(user!=null)
 		{
-			Random random = new Random(1000);
+			Random random = new Random();
 			int otp = random.nextInt();
 			mailService.sendMail(session,email,"SCM OTP",String.valueOf(otp));
 			session.setAttribute("otp", otp);
